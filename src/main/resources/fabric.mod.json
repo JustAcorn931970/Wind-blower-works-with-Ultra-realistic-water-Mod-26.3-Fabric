@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "windblower",
+  "version": "${version}",
+  "name": "Wind Blower",
+  "description": "A 2D handheld wind blower for Minecraft 26.3 Fabric. Hold right-click to push entities with configurable wind force.",
+  "authors": [
+    "OpenAI"
+  ],
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.windblower.WindBlowerMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
