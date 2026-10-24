@@ -20,6 +20,10 @@ public final class WindBlowerConfig {
     public static volatile double lift = 0.018;
     public static volatile double maxSpeed = 2.35;
     public static volatile int particles = 4;
+    /** Radius of the impulse sent to Ultra Realistic Water when aiming at simulated material. */
+    public static volatile double waterForce = 0.45;
+    /** Send a water impulse every N item-use ticks to avoid spamming the simulation. */
+    public static volatile int waterPulseTicks = 3;
 
     private WindBlowerConfig() {}
 
@@ -37,8 +41,21 @@ public final class WindBlowerConfig {
             lift = readDouble(p, "lift", lift, 0.0, 0.50);
             maxSpeed = readDouble(p, "maxspeed", maxSpeed, 0.1, 6.0);
             particles = (int) readDouble(p, "particles", particles, 0, 12);
+            waterForce = readDouble(p, "waterforce", waterForce, 0.15, 1.10);
+            waterPulseTicks = readInt(p, "waterpulse", waterPulseTicks, 1, 10);
         } catch (IOException ex) {
             WindBlowerMod.LOGGER.error("Could not read Wind Blower settings from {}", FILE, ex);
+        }
+    }
+
+    private static int readInt(Properties p, String key, int fallback, int min, int max) {
+        String raw = p.getProperty(key);
+        if (raw == null) return fallback;
+        try {
+            int parsed = Integer.parseInt(raw.trim());
+            return parsed >= min && parsed <= max ? parsed : fallback;
+        } catch (NumberFormatException ignored) {
+            return fallback;
         }
     }
 
@@ -81,6 +98,14 @@ public final class WindBlowerConfig {
                 if (value < 0.0 || value > 12.0 || value != Math.rint(value)) return false;
                 particles = (int) value;
             }
+            case "waterforce", "water_force" -> {
+                if (value < 0.15 || value > 1.10) return false;
+                waterForce = value;
+            }
+            case "waterpulse", "water_pulse" -> {
+                if (value < 1.0 || value > 10.0 || value != Math.rint(value)) return false;
+                waterPulseTicks = (int) value;
+            }
             default -> { return false; }
         }
         save();
@@ -94,6 +119,8 @@ public final class WindBlowerConfig {
         lift = 0.018;
         maxSpeed = 2.35;
         particles = 4;
+        waterForce = 0.45;
+        waterPulseTicks = 3;
         save();
     }
 
@@ -105,6 +132,8 @@ public final class WindBlowerConfig {
         p.setProperty("lift", Double.toString(lift));
         p.setProperty("maxspeed", Double.toString(maxSpeed));
         p.setProperty("particles", Integer.toString(particles));
+        p.setProperty("waterforce", Double.toString(waterForce));
+        p.setProperty("waterpulse", Integer.toString(waterPulseTicks));
         try {
             Files.createDirectories(FILE.getParent());
             try (Writer writer = Files.newBufferedWriter(FILE)) {
@@ -123,6 +152,8 @@ public final class WindBlowerConfig {
             case "lift" -> Double.toString(lift);
             case "maxspeed", "max_speed" -> Double.toString(maxSpeed);
             case "particles" -> Integer.toString(particles);
+            case "waterforce", "water_force" -> Double.toString(waterForce);
+            case "waterpulse", "water_pulse" -> Integer.toString(waterPulseTicks);
             default -> "unknown";
         };
     }

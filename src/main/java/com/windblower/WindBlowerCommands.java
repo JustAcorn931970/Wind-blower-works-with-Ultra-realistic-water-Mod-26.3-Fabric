@@ -47,8 +47,12 @@ public final class WindBlowerCommands {
         source.sendSuccess(() -> Component.literal("lift = " + WindBlowerConfig.lift + " (0.0–0.50 upward force)"), false);
         source.sendSuccess(() -> Component.literal("maxspeed = " + WindBlowerConfig.maxSpeed + " (0.1–6.0)"), false);
         source.sendSuccess(() -> Component.literal("particles = " + WindBlowerConfig.particles + " (0–12 particles per burst)"), false);
+        source.sendSuccess(() -> Component.literal("waterforce = " + WindBlowerConfig.waterForce + " (0.15–1.10 impulse radius for Ultra Realistic Water)"), false);
+        source.sendSuccess(() -> Component.literal("waterpulse = " + WindBlowerConfig.waterPulseTicks + " (1–10 use ticks between water impulses; larger = less frequent)"), false);
+        source.sendSuccess(() -> Component.literal("Water support requires Ultra Realistic Water's tntReactions option to be enabled."), false);
         source.sendSuccess(() -> Component.literal("Commands: /windblow set <setting> <value>  |  /windblow reset"), false);
         source.sendSuccess(() -> Component.literal("Example: /windblow set strength 0.35"), false);
+        source.sendSuccess(() -> Component.literal("Water examples: /windblow set waterforce 0.35  |  /windblow set waterpulse 4"), false);
         return 1;
     }
 }

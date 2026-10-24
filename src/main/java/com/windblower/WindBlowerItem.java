@@ -60,6 +60,10 @@ public final class WindBlowerItem extends Item {
 
         if (level.isClientSide()) {
             spawnWindParticles(level, origin, look, remainingUseDuration);
+            // Optional bridge to Ultra Realistic Water 1.2.2. It only applies
+            // impulses when the aim ray intersects one of that mod's simulated
+            // materials; otherwise the normal visual wind stream is unchanged.
+            WindBlowerWaterCompat.pulse(level, player, origin, look, remainingUseDuration);
             return;
         }
 

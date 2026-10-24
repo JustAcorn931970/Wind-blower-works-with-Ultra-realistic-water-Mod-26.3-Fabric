@@ -3,7 +3,7 @@
   "id": "windblower",
   "version": "${version}",
   "name": "Wind Blower",
-  "description": "A 2D handheld wind blower for Minecraft 26.3 Fabric. Hold right-click to push entities with configurable wind force.",
+  "description": "A 2D handheld wind blower for Minecraft 26.3 Fabric. Hold right-click to push entities and send optional gust impulses into Ultra Realistic Water simulated materials.",
   "authors": [
     "OpenAI"
   ],

@@ -18,6 +18,6 @@ public final class WindBlowerMod implements ModInitializer {
         WindBlowerConfig.load();
         WindBlowerItems.initialize();
         WindBlowerCommands.register();
-        LOGGER.info("Wind Blower 1.1.6 loaded. Settings: /windblow settings. Config: windblower.properties");
+        LOGGER.info("Wind Blower 1.2.1 loaded. Settings: /windblow settings. Config: windblower.properties");
     }
 }
