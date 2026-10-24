@@ -1,0 +1,5 @@
+Wind Blower 1.2.0 source project. No prebuilt JAR is included.
+
+An online GitHub Actions workflow is included at .github/workflows/build.yml and uses a hosted JDK 25 + Gradle 9.7.1 to compile against actual Minecraft 26.3 and Fabric dependencies. See BUILD-ONLINE.md for browser-only steps.
+
+The project was not built or launched in this environment. Use the output only if the online workflow reports a successful build, then test in a copied game instance and world.
