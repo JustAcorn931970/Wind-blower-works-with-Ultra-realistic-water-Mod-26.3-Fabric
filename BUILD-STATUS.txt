@@ -1,5 +1,2 @@
-Wind Blower 1.2.0 source project. No prebuilt JAR is included.
-
-An online GitHub Actions workflow is included at .github/workflows/build.yml and uses a hosted JDK 25 + Gradle 9.7.1 to compile against actual Minecraft 26.3 and Fabric dependencies. See BUILD-ONLINE.md for browser-only steps.
-
-The project was not built or launched in this environment. Use the output only if the online workflow reports a successful build, then test in a copied game instance and world.
+Wind Blower 1.2.1 source project with optional Ultra Realistic Water 1.2.2 compatibility.
+No prebuilt JAR is included. The public water mod uses a custom Vulkan simulation; this project hooks its existing WaterWorld.onExplosion(Vec3, float) method by reflection when the user aims at a simulated fluid/material. This needs a real GitHub Actions build and in-game test. See BUILD-ONLINE.md.
